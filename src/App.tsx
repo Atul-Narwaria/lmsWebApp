@@ -28,6 +28,7 @@ function App() {
         <Routes>
          <Route path="/" element={    <AdminHome />} />
          <Route path="/teacher" element={    <Teacher />} />
+         
          <Route path="/user" element={    <AdminHome />} />
          <Route path="/message" element={    <AdminHome />} />
          <Route path="/setting" element={    <AdminHome />} />

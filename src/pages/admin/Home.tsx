@@ -44,17 +44,10 @@ function Home() {
     </div>
    </section>
    <section className='flex flex-col md:flex-row  gap-3 w-full justify-around items-center my-3'>
-      <MatrialTable data={userData} title='users' />
+      <MatrialTable data={userData} title='users' name="user's data" />
       
    </section>
-   <section className='flex flex-col md:flex-row  gap-3 w-full justify-around items-center my-3'>
-      <MatrialTable data={userData} title='users' />
-      
-   </section>
-   <section className='flex flex-col md:flex-row  gap-3 w-full justify-around items-center my-3'>
-      <MatrialTable data={userData} title='users' />
-      
-   </section>
+   
   
   
   </>

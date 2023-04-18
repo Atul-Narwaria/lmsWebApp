@@ -44,7 +44,7 @@ function TopNav(props:any) {
                 <div>
                 <HiMenuAlt3
                 size={36}
-                className="cursor-pointer  text-dark  "
+                className="cursor-pointer  text-dark ml-3  "
                 onClick={() => {props.setSideopen(!props.sideopen)}}
                 />
                 </div>
