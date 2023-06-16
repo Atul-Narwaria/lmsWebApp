@@ -2,9 +2,15 @@ import React,{useState} from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { HiMenuAlt3 } from "react-icons/hi";
-
+import { useLocation } from 'react-router-dom';
+  
 
 function TopNav(props:any) {
+
+  // const location = useLocation();
+  // const pathName = location.pathname;
+  // console.log(pathName);
+
     const navigation = [
         { name: 'Dashboard', href: '#', current: true },
         { name: 'Team', href: '#', current: false },
@@ -39,12 +45,12 @@ function TopNav(props:any) {
             />
           </div>
           <div className="">
-            <div className={`flex relative space-x-4 items-center  ${props.sideopen ? 'sm:left-0  md:left-[22vw] lg:w-[17vw]' : 'sm:left-0 md:left-[5vw] lg:left-[3vw]'}   duration-500  `}>
+            <div className={`flex relative space-x-4 items-center  ${props.sideopen ? 'sm:left-0  md:left-[16vw] lg:w-[17vw]' : 'sm:left-0 md:left-[5vw] lg:left-[3vw]'}   duration-500  `}>
                 
                 <div>
                 <HiMenuAlt3
                 size={36}
-                className="cursor-pointer  text-dark ml-3  "
+                className="cursor-pointer  text-dark ml-1  "
                 onClick={() => {props.setSideopen(!props.sideopen)}}
                 />
                 </div>
@@ -156,7 +162,7 @@ function TopNav(props:any) {
             as="a"
             href={item.href}
             className={classNames(
-              item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+              item.current ? 'bg-gray-900 text-white duration-500' : 'text-gray-300 duration-500   hover:bg-gray-700 hover:text-white',
               'block px-3 py-2 rounded-md text-base font-medium'
             )}
             aria-current={item.current ? 'page' : undefined}

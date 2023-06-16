@@ -6,13 +6,18 @@ import { FiMessageSquare, } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 
 function SideNav(props:any) {
-    const menus = [
-        { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-        { name: "Teacher", link: "/teacher", icon: AiOutlineUser },
-        { name: "user", link: "/user", icon: AiOutlineUser },
-        { name: "messages", link: "/message", icon: FiMessageSquare, margin: true },
-        { name: "Setting", link: "/setting", icon: RiSettings4Line },
-      ];
+  const URLPathName = window.location.pathname;
+  var menus:any = [];
+  if( URLPathName.split('/')[1] === 'admin' ){
+    menus = [
+      { name: "dashboard", link: "/admin/dashboard", icon: MdOutlineDashboard },
+      { name: "Teacher", link: "/admin/teacher", icon: AiOutlineUser },
+      { name: "user", link: "/admin/user", icon: AiOutlineUser },
+      { name: "messages", link: "/admin/message", icon: FiMessageSquare, margin: true },
+      { name: "Setting", link: "/admin/setting", icon: RiSettings4Line },
+    ];
+  }
+     
   return (
     <section className={`flex gap-6 fixed shadow-lg  `}>
       <div
@@ -20,9 +25,10 @@ function SideNav(props:any) {
           props.sideopen ? "w-[60vw]  md:w-[25vw] lg:w-[18vw]   lg:block md:block   " : "lg:w-[5vw] md:w-[0]  hidden lg:block md:hidden  "
         } duration-500 text-gray-100 px-4  `}
       >
-        <div className={`  mt-4 ml-[1rem]  hidden sm:hidden md:block text-center` }>
+        <div className={`  mt-4   hidden sm:hidden md:block text-center  ` }>
+            <div className="flex justify-center">
             <img
-              className="block h-8 w-auto lg:hidden"
+              className="block h-8 w-auto lg:hidden "
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
             />
@@ -31,11 +37,13 @@ function SideNav(props:any) {
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
             />
+            </div>
+            
           </div>
         <div className={`top-[13vh]  absolute  md:top-[13vh] flex flex-col gap-4 ${
           props.sideopen ? "w-[11vw]  md:w-[20vw] lg:w-[16vw]    " : "w-[3vw]   "
         } `}>
-          {menus?.map((menu, i) => (
+          {menus?.map((menu:any, i:any) => (
             <NavLink
               key={i}
               to={menu.link} 
@@ -48,7 +56,7 @@ function SideNav(props:any) {
                 style={{
                   transitionDelay: `50ms`,
                 }}
-                className={`whitespace-pre duration-500 ${
+                className={`whitespace-pre duration-500  ${
                   !props.sideopen && "opacity-0 translate-x-28 overflow-hidden"
                 }`}
               >

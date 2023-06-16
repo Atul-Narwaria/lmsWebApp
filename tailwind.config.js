@@ -14,7 +14,10 @@ module.exports = {
       'light-blue': colors.lightBlue,
       'cyan': colors.cyan,
       'gray':colors.gray,
-      'dark':colors.black
+      'dark':colors.black,
+      'red':colors.red,
+      'green':colors.green,
+      'yellow':colors.yellow
     },
     extend: {
       fontFamily: {

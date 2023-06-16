@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
-import ButtonRedirect from "../button/ButtonRedirect";
+import { generateRandomAttendance, generateRandomClass, generateRandomClassSection } from "../../helpers/randomAlphaNum";
+
 
 
 
@@ -11,13 +12,13 @@ function MatrialTable(props:{data:any,title:string,name?:string,heigth?:number})
     var columns:GridColDef[] = [];
     var rows:any = [];
       // Otherwise filter will be applied on fields such as the hidden column id
-     if(props.title === 'users'){
+     if(props.title === 'students'){
         columns.push(
             { field: 'id', headerName: 'Id', flex:1 },
-            { field: 'username', headerName: 'User Name', flex:1 },
-            { field: 'name', headerName: 'Full Name', flex:1 },
-            { field: 'email', headerName: 'email', flex:1 },
-            { field: 'phone', headerName: 'Phone', flex:1 }
+            { field: 'username', headerName: 'Student Name', flex:1 },
+            { field: 'phone', headerName: 'Phone', flex:1 },
+            { field: 'class', headerName: 'Class', flex:1 },
+            { field: 'section', headerName: 'Section', flex:1 }
         )
         if(props.data !== null  && props.data !== undefined){
           if(props.data.length !== 0){
@@ -68,13 +69,46 @@ function MatrialTable(props:{data:any,title:string,name?:string,heigth?:number})
        })
       }
    }
+     } else if(props.title === 'teacherAttendance'){
+      columns.push(
+        { field: 'id', headerName: 'Id', flex:1 },
+        { field: 'name', headerName: 'Name', flex:1 },
+        { field: 'class', headerName: 'Class', flex:1 },
+        { field: 'attendance', headerName: 'Attendance', flex:1, sortable: false, renderCell: ({ row }) =>
+        <div className="flex gap-2">
+          { row.attendance === 'Absent' ? (
+            <p  className=" bg-red-700 text-white rounded-lg py-1 px-3">{row.attendance}</p>
+          ) : row.attendance === 'Present' ? (
+            <p className=" bg-green-700 text-white rounded-lg py-1 px-3">{row.attendance}</p>
+          ) : 
+          <p className=" bg-yellow-600 text-white rounded-lg py-1 px-3">{row.attendance}</p>
+          }
+        </div>
+        
+    },
+    )
+    if(props.data !== null  && props.data !== undefined){
+      if(props.data.length !== 0){
+        let datas = props.data.users;
+        datas.map((e:any,i:any)=>{
+          return rows.push({
+              id:e.id,
+              name:e.username,
+              class:generateRandomClass(),
+              section:generateRandomClassSection(),
+              attendance:generateRandomAttendance()
+          })
+      })
+      }
+   }
      }
      
     
 
       return (
-        <Box sx={{ height: props.heigth?props.heigth:500, width: 1, background:'white', position:'relative'}}>
-          <h1 className=" font-bold text-xl absolute top-3 left-5 z-20">{props.name ? props.name :''}</h1>
+        <Box sx={{ height: props.heigth?props.heigth:500, width:500, flexGrow:1, background:'white', position:'relative'}}>
+          <h1 className=" font-bold  z-20 sm:relative sm:mt-6 sm:mb-2 md:absolute md:m-0 md:left-5 md:top-5 text-xl ">{props.name ? props.name :''}</h1>
+          
           <DataGrid
            sx={{
             boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
@@ -101,7 +135,7 @@ function MatrialTable(props:{data:any,title:string,name?:string,heigth?:number})
                   csvOptions: { disableToolbarButton: true },
                   printOptions: { disableToolbarButton: true },
                   showQuickFilter: true,
-                  quickFilterProps: { debounceMs: 500 },
+                  
                 },
               }}
           />

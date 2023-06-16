@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { FaUserTie,FaUserFriends,FaStickyNote,FaBullhorn,FaTh } from "react-icons/fa";
 import IconCard from '../../component/cards/IconCard';
 import MatrialTable from '../../component/table/MatrialTable';
-import { Grid } from '@mui/material';
 import { useQuery } from 'react-query';
 import { Getusers } from '../../services/Users.service';
+import BasicTable from '../../component/table/Table';
 
 
 function Home() {
@@ -43,8 +43,22 @@ function Home() {
 
     </div>
    </section>
-   <section className='flex flex-col md:flex-row  gap-3 w-full justify-around items-center my-3'>
-      <MatrialTable data={userData} title='users' name="user's data" />
+   <section className='flex flex-col md:flex-row  gap-3 w-full justify-center items-center my-3'>
+     {/* <div className='w-[100%]'>
+     <MatrialTable data={userData}  title='students' name="New Students" />
+     </div> */}
+     <div className='w-[100%]'>
+      <div className="flex flex-row justify-between ">
+        <div>
+      <MatrialTable data={userData} title='teacherAttendance' name="Teacher Attendance" />
+
+        </div>
+        <div>
+      <MatrialTable data={userData} title='teacherAttendance' name="Teacher Attendance" />
+
+        </div>
+      </div>
+     </div>
       
    </section>
    
